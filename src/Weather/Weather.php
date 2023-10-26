@@ -39,6 +39,8 @@ class Weather
             'verify' => false
         ];
 
+
+
         $client = new Client($config);
         $response = $client->get($url);
         return $response;
