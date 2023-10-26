@@ -1,0 +1,8 @@
+<?php
+
+namespace DashCode\Traits;
+
+trait CurrentConditionsAPI
+{
+
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Weather\Traits;
+namespace DashCode\Traits;
 
 trait TranslationsAPI
 {

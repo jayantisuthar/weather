@@ -1,8 +1,8 @@
 <?php
 
-namespace Weather\Traits\LocationsAPI;
+namespace DashCode\Traits;
 
-trait LocationList
+trait LocationsAPI
 {
     public function getAdminAreaList($countryCode)
     {

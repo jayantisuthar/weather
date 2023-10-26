@@ -64,6 +64,26 @@ function getUrl($url)
             )
         ),
 
+        'current_condition' => array(
+            'location_wise' => array(
+                'location' => 'currentconditions/v1/{locationKey}'
+            ),
+            'top_cities' => array(
+                'group' => 'currentconditions/v1/topcities/{group}'
+            ),
+            'historical' => array(
+                'past_6_hour' => 'currentconditions/v1/{locationKey}/historical',
+                'past_24_hour' => 'currentconditions/v1/{locationKey}/historical/24',
+            ),
+        ),
+
+        'indices' => array(),
+        'weather_alarm' => array(),
+        'alerts' => array(),
+        'imagery' => array(),
+        'tropical' => array(),
+        'translation' => array(),
+        'minute_cast' => array(),
 
 
     };
