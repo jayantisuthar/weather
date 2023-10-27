@@ -16,7 +16,6 @@ use GuzzleHttp\Client;
 
 class Weather
 {
-    use AlertsAPI;
     use CurrentConditionsAPI;
     use ForecastAPI;
     use ImageryAPI;
@@ -27,41 +26,16 @@ class Weather
     use TropicalAPI;
     use WeatherAlarmsAPI;
 
-    public string $base_url = 'https://dataservice.accuweather.com';
-
-    /**
-     * https://developer.accuweather.com/localizations-by-language
-     * @var string
-     */
-    public string $language = 'en-us';
-
-
-    public int $offset = 100;
 
     public function __construct(public $apiKey)
     {
 
     }
 
-    public function get($url)
+    public static function Alerts(): AlertsAPI
     {
-        $config = [
-            'base_uri' => $this->base_url,
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json'
-            ],
-            'http_errors' => false,
-            //            'debug' => true,
-            'exceptions' => false,
-            'verify' => false
-        ];
-
-
-
-        $client = new Client($config);
-        $response = $client->get($url);
-        return $response;
+        return new AlertsAPI();
     }
+
 
 }

@@ -1,8 +1,12 @@
 <?php
 
+function resolveUrl($url, ...$args) {
+
+}
+
 function getUrl($url)
 {
-    return match ($url) {
+    $urls = array(
         'location' => array(
             'locations_list' => array(
                 'admin_areas' => 'locations/v1/adminareas/{countryCode}',
@@ -46,7 +50,6 @@ function getUrl($url)
                 'search' => 'locations/v1/cities/ipaddress',
             ),
         ),
-
 
         'forecast' => array(
             'daily' => array(
@@ -155,7 +158,23 @@ function getUrl($url)
         'minute_cast_by' => array(
             'lat_long' => 'forecasts/v1/minute'
         ),
+    );
 
+    return resolveArray($urls, $url);
+}
 
-    };
+function resolveArray(array $a, $path, $default = null)
+{
+    $current = $a;
+    $p = strtok($path, '.');
+
+    while ($p !== false) {
+        if (!isset($current[$p])) {
+            throw new \Exception('Invalid Path Access, array key does not exists '. $path);
+        }
+        $current = $current[$p];
+        $p = strtok('.');
+    }
+
+    return $current;
 }
