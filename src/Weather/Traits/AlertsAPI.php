@@ -6,9 +6,9 @@ use DashCode\Services\GuzzleClient;
 
 class AlertsAPI extends GuzzleClient
 {
-    public function AlertsByLocationKey()
+    public function AlertsByLocationKey($locationKey)
     {
-        $url = getUrl('alerts.specific.location');
+        $url = resolveUrl('alerts.specific.location', $locationKey);
         return $this->get($url);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
 function resolveUrl($url, ...$args) {
-
+    $url = getUrl($url);
+    return $url;
 }
 
 function getUrl($url)
@@ -132,14 +133,25 @@ function getUrl($url)
 
         'tropical' => array(
             'cyclone' => array(
-                'year' => 'tropical/v1/gov/storms/{yyyy}',
-                'specific_basin' => '',
-                'active_storm' => '',
-                'year_and_basin' => '',
-                'year_basin_gov_id' => '',
+                // govt issue notification cyclone
+                'gov_issue_by_year' => 'tropical/v1/gov/storms/{yyyy}',
+                'gov_issue_active_in_a_basin' => 'tropical/v1/gov/storms/active/{basinID}/{governmentID}',
+                'gov_issue_active' => 'tropical/v1/gov/storms/active',
+                'gov_issue_by_year_and_basin' => 'tropical/v1/gov/storms/{yyyy}/{basinID}',
+                'gov_issue_year_basin_gov_id' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}',
+                'gov_issue_active_in_basin' => 'tropical/v1/gov/storms/active/{basinId}',
+
+                'by_year_basin_and_id' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}',
+                'by_year_and_basin' => 'tropical/v1/storms/{yyyy}/{basinId}',
+                'by_basin_and_id' => 'tropical/v1/storms/active/{basinId}/{depressionId}',
+                'by_basin_id' => 'tropical/v1/storms/active/{basinId}',
+                'active' => 'tropical/v1/storms/active',
             ),
             'position' => array(
-                '' => '',
+                'gov_issue_all_position' => 'tropical/{version}/gov/storms/{yyyy}/{basinID}/{governmentID}/positions',
+                'gov_issue_current' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}/positions/current',
+                'all_positions' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions',
+                'current_position' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current',
             ),
             'forecast' => array(
                 'year_basin_gov_id' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}/forecasts',
