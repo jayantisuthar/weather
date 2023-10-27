@@ -30,6 +30,7 @@
             "DashCode\\": "src/Weather/"
         }
     },
+    "prefer-stable": true,
     "scripts": {
         "phpcs": "php-cs-fixer fix -v --diff --dry-run",
         "style-check": [
