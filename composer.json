@@ -1,7 +1,8 @@
 {
     "name": "dashcode/weather",
     "description": "AccuWeather API Data",
-    "license": "MIT",
+    "license": "Apache-2.0",
+    "version" : "1.0.0",
     "type": "library",
     "keywords": [
         "accu weather",
@@ -29,7 +30,6 @@
             "DashCode\\": "src/Weather/"
         }
     },
-    "minimum-stability": "stable",
     "scripts": {
         "phpcs": "php-cs-fixer fix -v --diff --dry-run",
         "style-check": [
