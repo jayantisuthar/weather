@@ -77,13 +77,84 @@ function getUrl($url)
             ),
         ),
 
-        'indices' => array(),
-        'weather_alarm' => array(),
-        'alerts' => array(),
-        'imagery' => array(),
-        'tropical' => array(),
-        'translation' => array(),
-        'minute_cast' => array(),
+        'indices' => array(
+            '1_day' => array(
+                'specific' => 'indices/v1/daily/1day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/1day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/1day/{locationKey}',
+            ),
+            '5_day' => array(
+                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/5day/{locationKey}',
+            ),
+            '10_day' => array(
+                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/10day/{locationKey}',
+            ),
+            '15_day' => array(
+                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/15day/{locationKey}',
+            ),
+            'metadata_list' => array(
+                'all_daily_indices' => 'indices/v1/daily',
+                'all_index_group' => 'indices/v1/daily/groups',
+                'specific_group_all_indices' => 'indices/v1/daily/groups/{ID}',
+                'specific_index_type' => 'indices/v1/daily/{ID}',
+            )
+        ),
+
+        'weather_alarm' => array(
+            'location' => array(
+                '1_day' => 'alarms/v1/1day/{locationKey}',
+                '5_day' => 'alarms/v1/5day/{locationKey}',
+                '10_day' => 'alarms/v1/10day/{locationKey}',
+                '15_day' => 'alarms/v1/15day/{locationKey}',
+            )
+        ),
+
+        'alerts' => array(
+            'specific' => array(
+                'location' => 'alerts/v1/{locationKey}'
+            )
+        ),
+
+        'imagery' => array(
+            'radar' => array(
+                'location' => 'imagery/v1/maps/radsat/{resolution}/{locationKey}'
+            )
+        ),
+
+        'tropical' => array(
+            'cyclone' => array(
+                'year' => 'tropical/v1/gov/storms/{yyyy}',
+                'specific_basin' => '',
+                'active_storm' => '',
+                'year_and_basin' => '',
+                'year_basin_gov_id' => '',
+            ),
+            'position' => array(
+                '' => '',
+            ),
+            'forecast' => array(
+                'year_basin_gov_id' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}/forecasts',
+                'specific_tropical' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts',
+            ),
+        ),
+
+        'translation' => array(
+            'apis' => array(
+                'list_of_lang' => 'translations/v1/languages',
+                'groups_of_phrases' => 'translations/v1/groups',
+                'all_phrases_specific_group' => 'translations/v1/groups/{groupID}'
+            )
+        ),
+
+        'minute_cast_by' => array(
+            'lat_long' => 'forecasts/v1/minute'
+        ),
 
 
     };
