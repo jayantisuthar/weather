@@ -29,7 +29,7 @@
             "DashCode\\": "src/Weather/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "scripts": {
         "phpcs": "php-cs-fixer fix -v --diff --dry-run",
         "style-check": [
