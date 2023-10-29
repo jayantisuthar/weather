@@ -11,7 +11,7 @@ class MinuteCast  extends GuzzleClient
         parent::__construct($apiKey);
     }
 
-    public function Summary( float $lat , float $long)
+    public function summary( float $lat , float $long)
     {
         $url = resolveUrl('alerts.specific.location');
         return $this->get($url, ['query' => ['q' => "$lat,$long"]]);

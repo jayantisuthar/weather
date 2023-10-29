@@ -11,13 +11,13 @@ class Forecast extends GuzzleClient
         parent::__construct($apiKey);
     }
 
-    public function Daily(string $locationKey, int $days = 1, bool $details = false, bool $metrics = false, array $options = [])
+    public function daily(string $locationKey, int $days = 1, bool $details = false, bool $metrics = false, array $options = [])
     {
         $url = resolveUrl('alerts.specific.location', $days, $locationKey);
         return $this->get($url, $options);
     }
 
-    public function Hourly(string $locationKey, int $hours, bool $details = false, bool $metrics = false, array $options = [])
+    public function hourly(string $locationKey, int $hours, bool $details = false, bool $metrics = false, array $options = [])
     {
         $url = resolveUrl('alerts.specific.location', $hours, $locationKey);
         return $this->get($url, $options);

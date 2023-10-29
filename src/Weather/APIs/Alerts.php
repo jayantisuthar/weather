@@ -11,7 +11,7 @@ class Alerts extends GuzzleClient
         parent::__construct($apiKey);
     }
 
-    public function AlertsByLocationKey($locationKey, $details = false, $options = [])
+    public function location($locationKey, bool $details = false, array $options = [])
     {
         $url = resolveUrl('alerts.specific.location', $locationKey);
         return $this->get($url, $options);

@@ -6,15 +6,15 @@ use DashCode\Services\GuzzleClient;
 
 class Translations  extends GuzzleClient
 {
-    public function ListAllLanguages()
+    public function listAllLanguages()
     {
 
     }
-    public function ListAvailableTranslationGroup()
+    public function listAvailableTranslationGroup()
     {
 
     }
-    public function ListOfTranslationsForSpecificGroup()
+    public function listOfTranslationsForSpecificGroup()
     {
 
     }
