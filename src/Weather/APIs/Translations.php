@@ -1,8 +1,10 @@
 <?php
 
-namespace DashCode\Traits;
+namespace DashCode\APIs;
 
-trait TranslationsAPI
+use DashCode\Services\GuzzleClient;
+
+class Translations  extends GuzzleClient
 {
     public function ListAllLanguages()
     {

@@ -3,6 +3,7 @@
 namespace DashCode\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class GuzzleClient
 {
@@ -14,12 +15,20 @@ class GuzzleClient
      * @var string
      */
     public string $language = 'en-us';
+    public array $option = [];
 
-    public int $offset = 100;
-
-
-    public function get($url)
+    public function __construct($apiKey)
     {
+        $this->option['query']['apiKey'] = $apiKey;
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function get($url, $options)
+    {
+        $this->option = array_merge($this->option, $options);
+
         $config = [
             'base_uri' => $this->base_url,
             'headers' => [
@@ -32,10 +41,7 @@ class GuzzleClient
             'verify' => false
         ];
 
-
-
         $client = new Client($config);
-        $response = $client->get($url);
-        return $response;
+        return $client->get($url, $this->option);
     }
 }

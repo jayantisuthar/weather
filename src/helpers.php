@@ -1,7 +1,11 @@
 <?php
 
-function resolveUrl($url, ...$args) {
-    $url = getUrl($url);
+function resolveUrl($key, ...$args) {
+    $url = getUrl($key);
+    preg_match_all("\{[a-z]+}\g", $url, $matches);
+
+
+
     return $url;
 }
 
@@ -54,17 +58,17 @@ function getUrl($url)
 
         'forecast' => array(
             'daily' => array(
-                '1_day' => 'forecasts/v1/daily/1day/{locationKey}',
-                '5_day' => 'forecasts/v1/daily/5day/{locationKey}',
-                '10_day' => 'forecasts/v1/daily/10day/{locationKey}',
-                '15_day' => 'forecasts/v1/daily/15day/{locationKey}',
+                'by_day' => 'forecasts/v1/daily/{day}day/{locationKey}',
+//                '5_day' => 'forecasts/v1/daily/5day/{locationKey}',
+//                '10_day' => 'forecasts/v1/daily/10day/{locationKey}',
+//                '15_day' => 'forecasts/v1/daily/15day/{locationKey}',
             ),
             'hourly' => array(
-                '1_hour' => 'forecasts/v1/hourly/1hour/{locationKey}',
-                '12_hour' => 'forecasts/v1/hourly/12hour/{locationKey}',
-                '24_hour' => 'forecasts/v1/hourly/24hour/{locationKey}',
-                '72_hour' => 'forecasts/v1/hourly/72hour/{locationKey}',
-                '120_hour' => 'forecasts/v1/hourly/120hour/{locationKey}',
+                'by_hour' => 'forecasts/v1/hourly/{hour}hour/{locationKey}',
+//                '12_hour' => 'forecasts/v1/hourly/12hour/{locationKey}',
+//                '24_hour' => 'forecasts/v1/hourly/24hour/{locationKey}',
+//                '72_hour' => 'forecasts/v1/hourly/72hour/{locationKey}',
+//                '120_hour' => 'forecasts/v1/hourly/120hour/{locationKey}',
             )
         ),
 
@@ -82,26 +86,26 @@ function getUrl($url)
         ),
 
         'indices' => array(
-            '1_day' => array(
+            'by_day' => array(
                 'specific' => 'indices/v1/daily/1day/{locationKey}/{ID}',
                 'group' => 'indices/v1/daily/1day/{locationKey}/groups/{ID}',
                 'all' => 'indices/v1/daily/1day/{locationKey}',
             ),
-            '5_day' => array(
-                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/5day/{locationKey}',
-            ),
-            '10_day' => array(
-                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/10day/{locationKey}',
-            ),
-            '15_day' => array(
-                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/15day/{locationKey}',
-            ),
+//            '5_day' => array(
+//                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
+//                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
+//                'all' => 'indices/v1/daily/5day/{locationKey}',
+//            ),
+//            '10_day' => array(
+//                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
+//                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
+//                'all' => 'indices/v1/daily/10day/{locationKey}',
+//            ),
+//            '15_day' => array(
+//                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
+//                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
+//                'all' => 'indices/v1/daily/15day/{locationKey}',
+//            ),
             'metadata_list' => array(
                 'all_daily_indices' => 'indices/v1/daily',
                 'all_index_group' => 'indices/v1/daily/groups',
@@ -112,7 +116,7 @@ function getUrl($url)
 
         'weather_alarm' => array(
             'location' => array(
-                '1_day' => 'alarms/v1/1day/{locationKey}',
+                'by_day' => 'alarms/v1/{day}day/{locationKey}',
                 '5_day' => 'alarms/v1/5day/{locationKey}',
                 '10_day' => 'alarms/v1/10day/{locationKey}',
                 '15_day' => 'alarms/v1/15day/{locationKey}',

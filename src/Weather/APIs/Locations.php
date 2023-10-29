@@ -1,8 +1,10 @@
 <?php
 
-namespace DashCode\Traits;
+namespace DashCode\APIs;
 
-trait LocationsAPI
+use DashCode\Services\GuzzleClient;
+
+class Locations  extends GuzzleClient
 {
     public function getAdminAreaList($countryCode)
     {
