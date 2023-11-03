@@ -6,10 +6,11 @@ use DashCode\Services\GuzzleClient;
 
 class MinuteCast  extends GuzzleClient
 {
-    public function __construct($apiKey)
+    public function __construct($apiKey, $lang)
     {
-        parent::__construct($apiKey);
+        parent::__construct($apiKey, $lang);
     }
+
 
     public function summary( float $lat , float $long)
     {

@@ -13,63 +13,73 @@ use DashCode\APIs\Translations;
 use DashCode\APIs\Tropical;
 use DashCode\APIs\WeatherAlarms;
 
-class Weather
+final class Weather implements WeatherInterface
 {
 
-    public static string $apiKey = '';
+    public string $apiKey = '';
+    public string $language = '';
 
-    public function __construct($apiKey = '')
+    public function __construct($apiKey = '', $lan = 'en-us')
     {
-        self::$apiKey = $apiKey;
+        $this->apiKey = $apiKey;
+        $this->language = $lan;
     }
 
-    public static function alerts(): Alerts
+    public function alertsApi(): Alerts
     {
-        return new Alerts(self::$apiKey);
+        return new Alerts(self::getKey());
+    }
+//
+//    public static function currentConditions(): CurrentConditions
+//    {
+//        return new CurrentConditions($this->apiKey);
+//    }
+//
+//    public static function forecast(): Forecast
+//    {
+//        return new Forecast($this->apiKey);
+//    }
+//
+//    public static function imagery(): Imagery
+//    {
+//        return new Imagery($this->apiKey);
+//    }
+//
+//    public static function Indices(): Indices
+//    {
+//        return new Indices($this->apiKey);
+//    }
+//
+//    public static function Locations(): Locations
+//    {
+//        return new Locations($this->apiKey);
+//    }
+//
+//    public static function MinuteCast(): MinuteCast
+//    {
+//        return new MinuteCast($this->apiKey);
+//    }
+//
+//    public static function Translations(): Translations
+//    {
+//        return new Translations($this->apiKey);
+//    }
+//
+//    public static function Tropical(): Tropical
+//    {
+//        return new Tropical($this->apiKey);
+//    }
+//
+//    public static function WeatherAlarms(): WeatherAlarms
+//    {
+//        return new WeatherAlarms($this->apiKey);
+//    }
+
+    private function getKey() {
+        return $this->apiKey;
     }
 
-    public static function currentConditions(): CurrentConditions
-    {
-        return new CurrentConditions(self::$apiKey);
-    }
-
-    public static function forecast(): Forecast
-    {
-        return new Forecast(self::$apiKey);
-    }
-
-    public static function imagery(): Imagery
-    {
-        return new Imagery(self::$apiKey);
-    }
-
-    public static function Indices(): Indices
-    {
-        return new Indices(self::$apiKey);
-    }
-
-    public static function Locations(): Locations
-    {
-        return new Locations(self::$apiKey);
-    }
-
-    public static function MinuteCast(): MinuteCast
-    {
-        return new MinuteCast(self::$apiKey);
-    }
-
-    public static function Translations(): Translations
-    {
-        return new Translations(self::$apiKey);
-    }
-
-    public static function Tropical(): Tropical
-    {
-        return new Tropical(self::$apiKey);
-    }
-
-    public static function WeatherAlarms(): WeatherAlarms
-    {
-        return new WeatherAlarms(self::$apiKey);
+    private function getLanguage() {
+        return $this->language;
     }
 }

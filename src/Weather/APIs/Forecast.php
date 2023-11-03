@@ -6,20 +6,26 @@ use DashCode\Services\GuzzleClient;
 
 class Forecast extends GuzzleClient
 {
-    public function __construct($apiKey)
+    public function __construct($apiKey, $lang, $option)
     {
-        parent::__construct($apiKey);
+        parent::__construct($apiKey, $lang, $option);
     }
 
-    public function daily(string $locationKey, int $days = 1, bool $details = false, bool $metrics = false, array $options = [])
+    private function daily(string $locationKey, int $days = 1, bool $details = false, bool $metrics = false)
     {
-        $url = resolveUrl('alerts.specific.location', $days, $locationKey);
-        return $this->get($url, $options);
+        $this->option['query']['details'] = $details;
+        $this->option['query']['metric'] = $metrics;
+
+        $url = resolveUrl('forecast.daily.day', $days, $locationKey);
+        return $this->get($url);
     }
 
-    public function hourly(string $locationKey, int $hours, bool $details = false, bool $metrics = false, array $options = [])
+    private function hourly(string $locationKey, int $hours = 1, bool $details = false, bool $metrics = false)
     {
-        $url = resolveUrl('alerts.specific.location', $hours, $locationKey);
-        return $this->get($url, $options);
+        $this->option['query']['details'] = $details;
+        $this->option['query']['metric'] = $metrics;
+
+        $url = resolveUrl('forecast.hourly.hour', $hours, $locationKey);
+        return $this->get($url);
     }
 }

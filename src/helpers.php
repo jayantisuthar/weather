@@ -1,17 +1,78 @@
 <?php
 
-function resolveUrl($key, ...$args) {
-    $url = getUrl($key);
-    preg_match_all("\{[a-z]+}\g", $url, $matches);
-
-
-
+function resolveUrl($url, ...$args)
+{
+    $url = getUrl($url);
     return $url;
 }
 
 function getUrl($url)
 {
     $urls = array(
+
+        'alerts' => array(
+            'specific' => array(
+                'location' => 'alerts/v1/{locationKey}'
+            )
+        ),
+
+        'current_condition' => array(
+            'location_wise' => array(
+                'location' => 'currentconditions/v1/{locationKey}'
+            ),
+            'top_cities' => array(
+                'group' => 'currentconditions/v1/topcities/{group}'
+            ),
+            'historical' => array(
+                'past_6_hour' => 'currentconditions/v1/{locationKey}/historical',
+                'past_24_hour' => 'currentconditions/v1/{locationKey}/historical/24',
+            ),
+        ),
+
+        'forecast' => array(
+            'daily' => array(
+                'day' => 'forecasts/v1/daily/{day}day/{locationKey}'
+            ),
+            'hourly' => array(
+                'hour' => 'forecasts/v1/hourly/{hour}hour/{locationKey}'
+            )
+        ),
+
+        'imagery' => array(
+            'radar' => array(
+                'location' => 'imagery/v1/maps/radsat/{resolution}/{locationKey}'
+            )
+        ),
+
+        'indices' => array(
+            '1_day' => array(
+                'specific' => 'indices/v1/daily/1day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/1day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/1day/{locationKey}',
+            ),
+            '5_day' => array(
+                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/5day/{locationKey}',
+            ),
+            '10_day' => array(
+                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/10day/{locationKey}',
+            ),
+            '15_day' => array(
+                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
+                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
+                'all' => 'indices/v1/daily/15day/{locationKey}',
+            ),
+            'metadata_list' => array(
+                'all_daily_indices' => 'indices/v1/daily',
+                'all_index_group' => 'indices/v1/daily/groups',
+                'specific_group_all_indices' => 'indices/v1/daily/groups/{ID}',
+                'specific_index_type' => 'indices/v1/daily/{ID}',
+            )
+        ),
+
         'location' => array(
             'locations_list' => array(
                 'admin_areas' => 'locations/v1/adminareas/{countryCode}',
@@ -45,8 +106,8 @@ function getUrl($url)
                 'text_search' => 'locations/v1/search',
                 'text_search_by_countryCode' => 'locations/v1/{countryCode}/search',
                 'text_search_by_countryCode_and_adminCode' => 'locations/v1/{countryCode}/{adminCode}/search',
-
             ),
+
             'geo_position' => array(
                 'search' => 'locations/v1/cities/geoposition/search',
             ),
@@ -56,82 +117,15 @@ function getUrl($url)
             ),
         ),
 
-        'forecast' => array(
-            'daily' => array(
-                'by_day' => 'forecasts/v1/daily/{day}day/{locationKey}',
-//                '5_day' => 'forecasts/v1/daily/5day/{locationKey}',
-//                '10_day' => 'forecasts/v1/daily/10day/{locationKey}',
-//                '15_day' => 'forecasts/v1/daily/15day/{locationKey}',
-            ),
-            'hourly' => array(
-                'by_hour' => 'forecasts/v1/hourly/{hour}hour/{locationKey}',
-//                '12_hour' => 'forecasts/v1/hourly/12hour/{locationKey}',
-//                '24_hour' => 'forecasts/v1/hourly/24hour/{locationKey}',
-//                '72_hour' => 'forecasts/v1/hourly/72hour/{locationKey}',
-//                '120_hour' => 'forecasts/v1/hourly/120hour/{locationKey}',
-            )
+        'minute_cast_by' => array(
+            'lat_long' => 'forecasts/v1/minute'
         ),
 
-        'current_condition' => array(
-            'location_wise' => array(
-                'location' => 'currentconditions/v1/{locationKey}'
-            ),
-            'top_cities' => array(
-                'group' => 'currentconditions/v1/topcities/{group}'
-            ),
-            'historical' => array(
-                'past_6_hour' => 'currentconditions/v1/{locationKey}/historical',
-                'past_24_hour' => 'currentconditions/v1/{locationKey}/historical/24',
-            ),
-        ),
-
-        'indices' => array(
-            'by_day' => array(
-                'specific' => 'indices/v1/daily/1day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/1day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/1day/{locationKey}',
-            ),
-//            '5_day' => array(
-//                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
-//                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
-//                'all' => 'indices/v1/daily/5day/{locationKey}',
-//            ),
-//            '10_day' => array(
-//                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
-//                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
-//                'all' => 'indices/v1/daily/10day/{locationKey}',
-//            ),
-//            '15_day' => array(
-//                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
-//                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
-//                'all' => 'indices/v1/daily/15day/{locationKey}',
-//            ),
-            'metadata_list' => array(
-                'all_daily_indices' => 'indices/v1/daily',
-                'all_index_group' => 'indices/v1/daily/groups',
-                'specific_group_all_indices' => 'indices/v1/daily/groups/{ID}',
-                'specific_index_type' => 'indices/v1/daily/{ID}',
-            )
-        ),
-
-        'weather_alarm' => array(
-            'location' => array(
-                'by_day' => 'alarms/v1/{day}day/{locationKey}',
-                '5_day' => 'alarms/v1/5day/{locationKey}',
-                '10_day' => 'alarms/v1/10day/{locationKey}',
-                '15_day' => 'alarms/v1/15day/{locationKey}',
-            )
-        ),
-
-        'alerts' => array(
-            'specific' => array(
-                'location' => 'alerts/v1/{locationKey}'
-            )
-        ),
-
-        'imagery' => array(
-            'radar' => array(
-                'location' => 'imagery/v1/maps/radsat/{resolution}/{locationKey}'
+        'translation' => array(
+            'apis' => array(
+                'list_of_lang' => 'translations/v1/languages',
+                'groups_of_phrases' => 'translations/v1/groups',
+                'all_phrases_specific_group' => 'translations/v1/groups/{groupID}'
             )
         ),
 
@@ -163,17 +157,15 @@ function getUrl($url)
             ),
         ),
 
-        'translation' => array(
-            'apis' => array(
-                'list_of_lang' => 'translations/v1/languages',
-                'groups_of_phrases' => 'translations/v1/groups',
-                'all_phrases_specific_group' => 'translations/v1/groups/{groupID}'
+        'weather_alarm' => array(
+            'location' => array(
+                '1_day' => 'alarms/v1/1day/{locationKey}',
+                '5_day' => 'alarms/v1/5day/{locationKey}',
+                '10_day' => 'alarms/v1/10day/{locationKey}',
+                '15_day' => 'alarms/v1/15day/{locationKey}',
             )
         ),
 
-        'minute_cast_by' => array(
-            'lat_long' => 'forecasts/v1/minute'
-        ),
     );
 
     return resolveArray($urls, $url);
@@ -186,7 +178,7 @@ function resolveArray(array $a, $path, $default = null)
 
     while ($p !== false) {
         if (!isset($current[$p])) {
-            throw new \Exception('Invalid Path Access, array key does not exists '. $path);
+            throw new \Exception('Invalid Path Access, array key does not exists ' . $path);
         }
         $current = $current[$p];
         $p = strtok('.');

@@ -14,12 +14,16 @@ class GuzzleClient
      * https://developer.accuweather.com/localizations-by-language
      * @var string
      */
-    public string $language = 'en-us';
+    public string $language = '';
     public array $option = [];
 
-    public function __construct($apiKey)
+    public function __construct($apiKey, $language, $option)
     {
         $this->option['query']['apiKey'] = $apiKey;
+
+        $this->option = array_merge($this->option, $option);
+
+        $this->language = $language;
     }
 
     /**
