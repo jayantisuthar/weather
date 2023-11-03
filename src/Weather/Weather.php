@@ -13,73 +13,73 @@ use DashCode\APIs\Translations;
 use DashCode\APIs\Tropical;
 use DashCode\APIs\WeatherAlarms;
 
-final class Weather implements WeatherInterface
+final class Weather
 {
 
     public string $apiKey = '';
     public string $language = '';
+    public array $options = [];
 
-    public function __construct($apiKey = '', $lan = 'en-us')
+    public function __construct($apiKey, $lan, $options)
     {
         $this->apiKey = $apiKey;
         $this->language = $lan;
+        $this->options = $options;
     }
 
-    public function alertsApi(): Alerts
+    public static function config($apiKey = '', $lan = 'en-us', $options = []): self
     {
-        return new Alerts(self::getKey());
-    }
-//
-//    public static function currentConditions(): CurrentConditions
-//    {
-//        return new CurrentConditions($this->apiKey);
-//    }
-//
-//    public static function forecast(): Forecast
-//    {
-//        return new Forecast($this->apiKey);
-//    }
-//
-//    public static function imagery(): Imagery
-//    {
-//        return new Imagery($this->apiKey);
-//    }
-//
-//    public static function Indices(): Indices
-//    {
-//        return new Indices($this->apiKey);
-//    }
-//
-//    public static function Locations(): Locations
-//    {
-//        return new Locations($this->apiKey);
-//    }
-//
-//    public static function MinuteCast(): MinuteCast
-//    {
-//        return new MinuteCast($this->apiKey);
-//    }
-//
-//    public static function Translations(): Translations
-//    {
-//        return new Translations($this->apiKey);
-//    }
-//
-//    public static function Tropical(): Tropical
-//    {
-//        return new Tropical($this->apiKey);
-//    }
-//
-//    public static function WeatherAlarms(): WeatherAlarms
-//    {
-//        return new WeatherAlarms($this->apiKey);
-//    }
-
-    private function getKey() {
-        return $this->apiKey;
+        $class = __CLASS__;
+        return new $class($apiKey, $lan, $options);
     }
 
-    private function getLanguage() {
-        return $this->language;
+    public function alerts(): Alerts
+    {
+        return new Alerts($this->apiKey, $this->language, $this->options);
+    }
+
+    public function currentConditions(): CurrentConditions
+    {
+        return new CurrentConditions($this->apiKey, $this->language, $this->options);
+    }
+
+    public function forecast(): Forecast
+    {
+        return new Forecast($this->apiKey, $this->language, $this->options);
+    }
+
+    public function imagery(): Imagery
+    {
+        return new Imagery($this->apiKey, $this->language, $this->options);
+    }
+
+    public function Indices(): Indices
+    {
+        return new Indices($this->apiKey, $this->language, $this->options);
+    }
+
+    public function Locations(): Locations
+    {
+        return new Locations($this->apiKey, $this->language, $this->options);
+    }
+
+    public function MinuteCast(): MinuteCast
+    {
+        return new MinuteCast($this->apiKey, $this->language, $this->options);
+    }
+
+    public function Translations(): Translations
+    {
+        return new Translations($this->apiKey, $this->language, $this->options);
+    }
+
+    public function Tropical(): Tropical
+    {
+        return new Tropical($this->apiKey, $this->language, $this->options);
+    }
+
+    public function WeatherAlarms(): WeatherAlarms
+    {
+        return new WeatherAlarms($this->apiKey, $this->language, $this->options);
     }
 }
