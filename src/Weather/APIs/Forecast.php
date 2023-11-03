@@ -3,6 +3,8 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 class Forecast extends GuzzleClient
 {
@@ -11,21 +13,35 @@ class Forecast extends GuzzleClient
         parent::__construct($apiKey, $lang, $option);
     }
 
-    private function daily(string $locationKey, int $days = 1, bool $details = false, bool $metrics = false)
+    /**
+     * @param string $locationKey
+     * @param int $day
+     * @param bool $details
+     * @param bool $metrics
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function daily(string $locationKey, int $day = 1, bool $details = false, bool $metrics = false)
     {
         $this->option['query']['details'] = $details;
         $this->option['query']['metric'] = $metrics;
 
-        $url = resolveUrl('forecast.daily.day', $days, $locationKey);
+        if (!in_array($day, [1, 5, 10, 15]))
+            $this->throwException("day must be selected from [1, 5, 10, 15]");
+
+        $url = resolveUrl('forecast.daily.day', $day, $locationKey);
         return $this->get($url);
     }
 
-    private function hourly(string $locationKey, int $hours = 1, bool $details = false, bool $metrics = false)
+    public function hourly(string $locationKey, int $hour = 1, bool $details = false, bool $metrics = false)
     {
         $this->option['query']['details'] = $details;
         $this->option['query']['metric'] = $metrics;
 
-        $url = resolveUrl('forecast.hourly.hour', $hours, $locationKey);
+        if (!in_array($hour, [1, 12, 24, 72, 120]))
+            $this->throwException("hour must be selected from [1, 12, 24, 72, 120]");
+
+        $url = resolveUrl('forecast.hourly.hour', $hour, $locationKey);
         return $this->get($url);
     }
 }

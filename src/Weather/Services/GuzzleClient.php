@@ -2,6 +2,7 @@
 
 namespace DashCode\Services;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -47,5 +48,10 @@ class GuzzleClient
 
         $client = new Client($config);
         return $client->get($url, $this->option);
+    }
+
+    public function throwException($message)
+    {
+        return throw new Exception($message);
     }
 }

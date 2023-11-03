@@ -45,25 +45,10 @@ function getUrl($url)
         ),
 
         'indices' => array(
-            '1_day' => array(
-                'specific' => 'indices/v1/daily/1day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/1day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/1day/{locationKey}',
-            ),
-            '5_day' => array(
-                'specific' => 'indices/v1/daily/5day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/5day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/5day/{locationKey}',
-            ),
-            '10_day' => array(
-                'specific' => 'indices/v1/daily/10day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/10day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/10day/{locationKey}',
-            ),
-            '15_day' => array(
-                'specific' => 'indices/v1/daily/15day/{locationKey}/{ID}',
-                'group' => 'indices/v1/daily/15day/{locationKey}/groups/{ID}',
-                'all' => 'indices/v1/daily/15day/{locationKey}',
+            'day_wise' => array(
+                'specific' => 'indices/v1/daily/{day}day/{locationKey}/{groupId}',
+                'group' => 'indices/v1/daily/{day}day/{locationKey}/groups/{indexId}',
+                'all' => 'indices/v1/daily/{day}day/{locationKey}',
             ),
             'metadata_list' => array(
                 'all_daily_indices' => 'indices/v1/daily',
