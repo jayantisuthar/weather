@@ -3,6 +3,7 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -20,8 +21,9 @@ class Forecast extends GuzzleClient
      * @param bool $metrics
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function daily(string $locationKey, int $day = 1, bool $details = false, bool $metrics = false)
+    public function daily(string $locationKey, int $day = 1, bool $details = false, bool $metrics = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
         $this->option['query']['metric'] = $metrics;
@@ -40,8 +42,9 @@ class Forecast extends GuzzleClient
      * @param bool $metrics
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function hourly(string $locationKey, int $hour = 1, bool $details = false, bool $metrics = false)
+    public function hourly(string $locationKey, int $hour = 1, bool $details = false, bool $metrics = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
         $this->option['query']['metric'] = $metrics;

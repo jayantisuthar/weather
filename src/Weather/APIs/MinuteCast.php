@@ -20,7 +20,7 @@ class MinuteCast  extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function summary(float $lat , float $long)
+    public function summary(float $lat , float $long): ResponseInterface
     {
         $url = resolveUrl('minute_cast_by.lat_long');
         return $this->get($url, ['query' => ['q' => "$lat,$long"]]);

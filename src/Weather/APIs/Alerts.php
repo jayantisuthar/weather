@@ -19,7 +19,7 @@ class Alerts extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function location($locationKey, bool $details = false)
+    public function location($locationKey, bool $details = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
 

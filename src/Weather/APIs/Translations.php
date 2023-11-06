@@ -17,7 +17,7 @@ class Translations  extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function listAllLanguages()
+    public function listAllLanguages(): ResponseInterface
     {
         $url = resolveUrl('translation.list_of_lang');
         return $this->get($url, ['query' => ['language' => false]]);
@@ -28,7 +28,7 @@ class Translations  extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function listAvailableTranslationGroup()
+    public function listAvailableTranslationGroup(): ResponseInterface
     {
         $url = resolveUrl('translation.groups_of_phrases');
         return $this->get($url, ['query' => ['language' => false]]);
@@ -40,7 +40,7 @@ class Translations  extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function listOfTranslationsForSpecificGroup(int $groupID)
+    public function listOfTranslationsForSpecificGroup(int $groupID): ResponseInterface
     {
         $url = resolveUrl('translation.all_phrases_specific_group', $groupID);
         return $this->get($url);

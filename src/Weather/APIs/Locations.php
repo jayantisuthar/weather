@@ -19,7 +19,7 @@ class Locations extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function adminAreaListInCountry($countryCode, $offset = null)
+    public function adminAreaListInCountry($countryCode, $offset = null): ResponseInterface
     {
         if ($offset)
             $this->option['query']['offset'] = $offset;
@@ -33,7 +33,7 @@ class Locations extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function countriesListInRegion($regionCode)
+    public function countriesListInRegion($regionCode): ResponseInterface
     {
         $url = resolveUrl('location.locations_list.country_list', $regionCode);
         return $this->get($url);
@@ -43,7 +43,7 @@ class Locations extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function regionsList()
+    public function regionsList(): ResponseInterface
     {
         $url = resolveUrl('location.locations_list.region_list');
         return $this->get($url);
@@ -51,11 +51,11 @@ class Locations extends GuzzleClient
 
     /**
      * @param $group
-     * @param $details
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function topCitiesListByGroup($group, $details = false)
+    public function topCitiesListByGroup($group, bool $details = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
 
@@ -68,7 +68,7 @@ class Locations extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function autoCompleteSearch(string $search)
+    public function autoCompleteSearch(string $search): ResponseInterface
     {
         $this->option['query']['q'] = $search;
 
@@ -78,11 +78,11 @@ class Locations extends GuzzleClient
 
     /**
      * @param $locationKey
-     * @param $details
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function neighborCitiesByLocation($locationKey, $details = false)
+    public function neighborCitiesByLocation($locationKey, bool $details = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
 
@@ -92,11 +92,11 @@ class Locations extends GuzzleClient
 
     /**
      * @param $locationKey
-     * @param $details
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByLocation($locationKey, $details = false)
+    public function searchByLocation($locationKey, bool $details = false): ResponseInterface
     {
         $this->option['query']['details'] = $details;
 
@@ -106,15 +106,15 @@ class Locations extends GuzzleClient
 
     /**
      * @param string $search
-     * @param $countryCode
-     * @param $adminCode
-     * @param $details
-     * @param $offset
-     * @param $alias
+     * @param null $countryCode
+     * @param null $adminCode
+     * @param bool $details
+     * @param null $offset
+     * @param null $alias
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByCity(string $search, $countryCode = null, $adminCode = null, $details = false, $offset = null, $alias = null)
+    public function searchByCity(string $search, $countryCode = null, $adminCode = null, bool $details = false, $offset = null, $alias = null): ResponseInterface
     {
         if ($offset)
             $this->option['query']['offset'] = $offset;
@@ -136,14 +136,14 @@ class Locations extends GuzzleClient
 
     /**
      * @param string $search
-     * @param $countryCode
-     * @param $adminCode
-     * @param $details
-     * @param $typeID
+     * @param null $countryCode
+     * @param null $adminCode
+     * @param bool $details
+     * @param null $typeID
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByPOI(string $search, $countryCode = null, $adminCode = null, $details = false, $typeID = null)
+    public function searchByPOI(string $search, $countryCode = null, $adminCode = null, bool $details = false, $typeID = null): ResponseInterface
     {
         if ($typeID)
             $this->option['query']['type'] = $typeID;
@@ -162,12 +162,12 @@ class Locations extends GuzzleClient
 
     /**
      * @param string $code
-     * @param $countryCode
-     * @param $details
+     * @param null $countryCode
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByPostalCode(string $code, $countryCode = null, $details = false)
+    public function searchByPostalCode(string $code, $countryCode = null, bool $details = false): ResponseInterface
     {
         if ($countryCode)
             $url = resolveUrl('location.text_search.postal_code_by_countryCode', $countryCode);
@@ -181,15 +181,15 @@ class Locations extends GuzzleClient
 
     /**
      * @param string $search
-     * @param $countryCode
-     * @param $adminCode
-     * @param $details
-     * @param $offset
-     * @param $alias
+     * @param null $countryCode
+     * @param null $adminCode
+     * @param bool $details
+     * @param null $offset
+     * @param null $alias
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByText(string $search, $countryCode = null, $adminCode = null, $details = false, $offset = null, $alias = null)
+    public function searchByText(string $search, $countryCode = null, $adminCode = null, bool $details = false, $offset = null, $alias = null): ResponseInterface
     {
         if ($offset)
             $this->option['query']['offset'] = $offset;
@@ -212,28 +212,28 @@ class Locations extends GuzzleClient
     /**
      * @param string $lat
      * @param string $long
-     * @param $details
-     * @param $toplevel
+     * @param bool $details
+     * @param bool $toplevel
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByGeoPosition(string $lat, string $long, $details = false, $toplevel = false)
+    public function searchByGeoPosition(string $lat, string $long, bool $details = false, bool $toplevel = false): ResponseInterface
     {
         $url = resolveUrl('location.geo_position.search');
 
         $this->option['query']['toplevel'] = $toplevel;
         $this->option['query']['details'] = $details;
-        $this->option['query']['q'] = "{$lat},{$long}";
+        $this->option['query']['q'] = "$lat,$long";
         return $this->get($url);
     }
 
     /**
      * @param string $ip
-     * @param $details
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByIPAddress(string $ip, $details = false)
+    public function searchByIPAddress(string $ip, bool $details = false): ResponseInterface
     {
         $this->option['query']['q'] = $ip;
         $this->option['query']['details'] = $details;

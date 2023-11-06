@@ -3,6 +3,7 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -18,8 +19,9 @@ class WeatherAlarms extends GuzzleClient
      * @param int $day
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function dayWise(string $locationKey, int $day = 1)
+    public function dayWise(string $locationKey, int $day = 1): ResponseInterface
     {
         if (!in_array($day, [1, 5, 10, 15]))
             $this->throwException("day must be selected from [1, 5, 10, 15]");

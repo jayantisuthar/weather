@@ -3,6 +3,7 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -21,12 +22,14 @@ class Imagery extends GuzzleClient
      * @param int $height
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function daily(string $locationKey, int $width = 480, int $height = 480)
+    public function daily(string $locationKey, int $width = 480, int $height = 480): ResponseInterface
     {
-        $resolution = "{$width}x{$height}";
-        if (!in_array($resolution, ['480x480', '640x480', '1024x1024'])) ;
-        $this->throwException("resolution must be selected from ['480x480', '640x480', '1024x1024']");
+        $resolution = "{$width}x$height";
+
+        if (!in_array($resolution, ['480x480', '640x480', '1024x1024']))
+            $this->throwException("resolution must be selected from ['480x480', '640x480', '1024x1024']");
 
         $url = resolveUrl('imagery.radar_location', $resolution, $locationKey);
         return $this->get($url);

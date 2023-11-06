@@ -3,6 +3,7 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -20,8 +21,9 @@ class Indices extends GuzzleClient
      * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function locationSpecificGroup(string $locationKey, int $day, int $groupId, bool $details = false)
+    public function locationSpecificGroup(string $locationKey, int $day, int $groupId, bool $details = false): ResponseInterface
     {
         if (!in_array($day, [1, 5, 10, 15]))
             $this->throwException("day must be selected from [1, 5, 10, 15]");
@@ -39,8 +41,9 @@ class Indices extends GuzzleClient
      * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function locationSpecificIndex(string $locationKey, int $day, int $indexId, bool $details = false)
+    public function locationSpecificIndex(string $locationKey, int $day, int $indexId, bool $details = false): ResponseInterface
     {
         if (!in_array($day, [1, 5, 10, 15]))
             $this->throwException("day must be selected from [1, 5, 10, 15]");
@@ -55,8 +58,9 @@ class Indices extends GuzzleClient
      * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws Exception
      */
-    public function locationAllIndices(string $locationKey, int $day, bool $details = false)
+    public function locationAllIndices(string $locationKey, int $day, bool $details = false): ResponseInterface
     {
         if (!in_array($day, [1, 5, 10, 15]))
             $this->throwException("day must be selected from [1, 5, 10, 15]");
@@ -69,7 +73,7 @@ class Indices extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function allDailyIndicesMetaData()
+    public function allDailyIndicesMetaData(): ResponseInterface
     {
         $url = resolveUrl('indices.metadata_list.all_daily_indices');
         return $this->get($url);
@@ -79,7 +83,7 @@ class Indices extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function allIndexGroupMetaData()
+    public function allIndexGroupMetaData(): ResponseInterface
     {
         $url = resolveUrl('indices.metadata_list.all_index_group');
         return $this->get($url);
@@ -90,7 +94,7 @@ class Indices extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function specificGroupAllIndicesMetaData($ID)
+    public function specificGroupAllIndicesMetaData($ID): ResponseInterface
     {
         $url = resolveUrl('indices.metadata_list.specific_group_all_indices', $ID);
         return $this->get($url);
@@ -101,7 +105,7 @@ class Indices extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function specificIndexMetaData($ID)
+    public function specificIndexMetaData($ID): ResponseInterface
     {
         $url = resolveUrl('indices.metadata_list.specific_index_type', $ID);
         return $this->get($url);

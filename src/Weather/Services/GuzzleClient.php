@@ -30,7 +30,7 @@ class GuzzleClient
     /**
      * @throws GuzzleException
      */
-    public function get($url, $options)
+    public function get($url, $options = [])
     {
         $this->option = array_merge($this->option, $options);
 
