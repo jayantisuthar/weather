@@ -30,18 +30,12 @@ function getUrl($url)
         ),
 
         'forecast' => array(
-            'daily' => array(
-                'day' => 'forecasts/v1/daily/{day}day/{locationKey}'
-            ),
-            'hourly' => array(
-                'hour' => 'forecasts/v1/hourly/{hour}hour/{locationKey}'
-            )
+            'day_wise' => 'forecasts/v1/daily/{day}day/{locationKey}',
+            'hour_wise' => 'forecasts/v1/hourly/{hour}hour/{locationKey}'
         ),
 
-        'imagery' => array(
-            'radar' => array(
-                'location' => 'imagery/v1/maps/radsat/{resolution}/{locationKey}'
-            )
+        'imagery_radar' => array(
+            'location' => 'imagery/v1/maps/radsat/{resolution}/{locationKey}'
         ),
 
         'indices' => array(
@@ -61,9 +55,9 @@ function getUrl($url)
         'location' => array(
             'locations_list' => array(
                 'admin_areas' => 'locations/v1/adminareas/{countryCode}',
-                'country_list' => 'locations/v1/adminareas/{countryCode}',
-                'region_list' => 'locations/v1/adminareas/{countryCode}',
-                'top_city_list' => 'locations/v1/adminareas/{countryCode}',
+                'country_list' => 'locations/v1/countries/{regionCode}',
+                'region_list' => 'locations/v1/regions',
+                'top_city_list' => 'locations/v1/topcities/{group}',
             ),
 
             'auto_complete' => array(
@@ -116,17 +110,19 @@ function getUrl($url)
             'cyclone' => array(
                 // govt issue notification cyclone
                 'gov_issue_by_year' => 'tropical/v1/gov/storms/{yyyy}',
-                'gov_issue_active_in_a_basin' => 'tropical/v1/gov/storms/active/{basinID}/{governmentID}',
-                'gov_issue_active' => 'tropical/v1/gov/storms/active',
                 'gov_issue_by_year_and_basin' => 'tropical/v1/gov/storms/{yyyy}/{basinID}',
                 'gov_issue_year_basin_gov_id' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}',
+
+                'gov_issue_active' => 'tropical/v1/gov/storms/active',
                 'gov_issue_active_in_basin' => 'tropical/v1/gov/storms/active/{basinId}',
+                'gov_issue_active_in_a_basin' => 'tropical/v1/gov/storms/active/{basinID}/{governmentID}',
 
                 'by_year_basin_and_id' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}',
                 'by_year_and_basin' => 'tropical/v1/storms/{yyyy}/{basinId}',
-                'by_basin_and_id' => 'tropical/v1/storms/active/{basinId}/{depressionId}',
-                'by_basin_id' => 'tropical/v1/storms/active/{basinId}',
+
                 'active' => 'tropical/v1/storms/active',
+                'by_basin_id' => 'tropical/v1/storms/active/{basinId}',
+                'by_basin_and_id' => 'tropical/v1/storms/active/{basinId}/{depressionId}',
             ),
             'position' => array(
                 'gov_issue_all_position' => 'tropical/{version}/gov/storms/{yyyy}/{basinID}/{governmentID}/positions',
@@ -141,7 +137,7 @@ function getUrl($url)
         ),
 
         'weather_alarm' => array(
-            'dayWise' =>  'alarms/v1/{day}day/{locationKey}'
+            'dayWise' => 'alarms/v1/{day}day/{locationKey}'
         ),
 
     );

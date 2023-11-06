@@ -36,6 +36,7 @@ class Indices extends GuzzleClient
      * @param string $locationKey
      * @param int $day
      * @param int $indexId
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */
@@ -51,6 +52,7 @@ class Indices extends GuzzleClient
     /**
      * @param string $locationKey
      * @param int $day
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */

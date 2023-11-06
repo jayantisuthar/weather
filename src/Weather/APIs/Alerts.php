@@ -3,6 +3,8 @@
 namespace DashCode\APIs;
 
 use DashCode\Services\GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 class Alerts extends GuzzleClient
 {
@@ -11,6 +13,12 @@ class Alerts extends GuzzleClient
         parent::__construct($apiKey, $lang, $option);
     }
 
+    /**
+     * @param $locationKey
+     * @param bool $details
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
     public function location($locationKey, bool $details = false)
     {
         $this->option['query']['details'] = $details;

@@ -28,7 +28,7 @@ class Imagery extends GuzzleClient
         if (!in_array($resolution, ['480x480', '640x480', '1024x1024'])) ;
         $this->throwException("resolution must be selected from ['480x480', '640x480', '1024x1024']");
 
-        $url = resolveUrl('imagery.radar.location', $resolution, $locationKey);
+        $url = resolveUrl('imagery.radar_location', $resolution, $locationKey);
         return $this->get($url);
     }
 }

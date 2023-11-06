@@ -13,6 +13,12 @@ class CurrentConditions extends GuzzleClient
         parent::__construct($apiKey, $lang);
     }
 
+    /**
+     * @param $locationKey
+     * @param bool $details
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
     public function location($locationKey, bool $details = false)
     {
         $this->option['query']['details'] = $details;
