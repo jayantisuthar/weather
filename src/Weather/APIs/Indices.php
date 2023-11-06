@@ -17,6 +17,7 @@ class Indices extends GuzzleClient
      * @param string $locationKey
      * @param int $day
      * @param int $groupId
+     * @param bool $details
      * @return ResponseInterface
      * @throws GuzzleException
      */

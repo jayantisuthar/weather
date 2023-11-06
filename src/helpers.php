@@ -107,11 +107,9 @@ function getUrl($url)
         ),
 
         'translation' => array(
-            'apis' => array(
-                'list_of_lang' => 'translations/v1/languages',
-                'groups_of_phrases' => 'translations/v1/groups',
-                'all_phrases_specific_group' => 'translations/v1/groups/{groupID}'
-            )
+            'list_of_lang' => 'translations/v1/languages',
+            'groups_of_phrases' => 'translations/v1/groups',
+            'all_phrases_specific_group' => 'translations/v1/groups/{groupID}'
         ),
 
         'tropical' => array(
@@ -143,12 +141,7 @@ function getUrl($url)
         ),
 
         'weather_alarm' => array(
-            'location' => array(
-                '1_day' => 'alarms/v1/1day/{locationKey}',
-                '5_day' => 'alarms/v1/5day/{locationKey}',
-                '10_day' => 'alarms/v1/10day/{locationKey}',
-                '15_day' => 'alarms/v1/15day/{locationKey}',
-            )
+            'dayWise' =>  'alarms/v1/{day}day/{locationKey}'
         ),
 
     );
