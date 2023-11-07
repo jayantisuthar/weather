@@ -20,17 +20,11 @@ final class Weather
     public string $language = '';
     public array $options = [];
 
-    public function __construct($apiKey, $lan, $options)
+    public function __construct($apiKey = null, $lan = null, $options = [])
     {
-        $this->apiKey = $apiKey;
-        $this->language = $lan;
+        $this->apiKey = $apiKey ?? getenv('ACCU_WEATHER_KEY');
+        $this->language = $lan ?? getenv('ACCU_WEATHER_KEY');
         $this->options = $options;
-    }
-
-    public static function config($apiKey = '', $lan = 'en-us', $options = []): self
-    {
-        $class = __CLASS__;
-        return new $class($apiKey, $lan, $options);
     }
 
     public function alerts(): Alerts

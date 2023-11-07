@@ -143,7 +143,7 @@ class Locations extends GuzzleClient
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function searchByPOI(string $search, $countryCode = null, $adminCode = null, bool $details = false, $typeID = null): ResponseInterface
+    public function searchByPOI(string $search, $countryCode = null, $adminCode = null, bool $details = false, string $typeID = null): ResponseInterface
     {
         if ($typeID)
             $this->option['query']['type'] = $typeID;

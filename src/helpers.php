@@ -117,22 +117,23 @@ function getUrl($url)
                 'gov_issue_active_in_basin' => 'tropical/v1/gov/storms/active/{basinId}',
                 'gov_issue_active_in_a_basin' => 'tropical/v1/gov/storms/active/{basinID}/{governmentID}',
 
-                'by_year_basin_and_id' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}',
-                'by_year_and_basin' => 'tropical/v1/storms/{yyyy}/{basinId}',
+                // deprecated apis
+                //'search_by_year_basin_and_id' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}',
+                //'search_by_year_and_basin' => 'tropical/v1/storms/{yyyy}/{basinId}',
 
-                'active' => 'tropical/v1/storms/active',
-                'by_basin_id' => 'tropical/v1/storms/active/{basinId}',
-                'by_basin_and_id' => 'tropical/v1/storms/active/{basinId}/{depressionId}',
+                //'active' => 'tropical/v1/storms/active',
+                //'by_basin_id' => 'tropical/v1/storms/active/{basinId}',
+                //'by_basin_and_id' => 'tropical/v1/storms/active/{basinId}/{depressionId}',
             ),
             'position' => array(
                 'gov_issue_all_position' => 'tropical/{version}/gov/storms/{yyyy}/{basinID}/{governmentID}/positions',
                 'gov_issue_current' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}/positions/current',
-                'all_positions' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions',
-                'current_position' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current',
+                //'all_positions' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions',
+                // 'current_position' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current',
             ),
             'forecast' => array(
                 'year_basin_gov_id' => 'tropical/v1/gov/storms/{yyyy}/{basinID}/{governmentID}/forecasts',
-                'specific_tropical' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts',
+                // 'specific_tropical' => 'tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts',
             ),
         ),
 

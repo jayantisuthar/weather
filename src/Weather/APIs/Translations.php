@@ -19,8 +19,10 @@ class Translations  extends GuzzleClient
      */
     public function listAllLanguages(): ResponseInterface
     {
+
+        $this->option['query']['language'] = false;
         $url = resolveUrl('translation.list_of_lang');
-        return $this->get($url, ['query' => ['language' => false]]);
+        return $this->get($url);
 
     }
 
@@ -30,8 +32,9 @@ class Translations  extends GuzzleClient
      */
     public function listAvailableTranslationGroup(): ResponseInterface
     {
+        $this->option['query']['language'] = false;
         $url = resolveUrl('translation.groups_of_phrases');
-        return $this->get($url, ['query' => ['language' => false]]);
+        return $this->get($url);
 
     }
 

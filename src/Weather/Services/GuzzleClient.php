@@ -34,6 +34,10 @@ class GuzzleClient
     {
         $this->option = array_merge($this->option, $options);
 
+        if ($this->option['query']['language'] === false)
+            unset($this->option['query']['language']);
+
+
         $config = [
             'base_uri' => $this->base_url,
             'headers' => [
