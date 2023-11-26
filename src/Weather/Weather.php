@@ -23,7 +23,7 @@ final class Weather
     public function __construct($apiKey = null, $lan = null, $options = [])
     {
         $this->apiKey = $apiKey ?? getenv('ACCU_WEATHER_KEY');
-        $this->language = $lan ?? getenv('ACCU_WEATHER_KEY');
+        $this->language = $lan ?? getenv('ACCU_WEATHER_LOCALE');
         $this->options = $options;
     }
 

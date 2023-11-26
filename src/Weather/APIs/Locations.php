@@ -139,7 +139,7 @@ class Locations extends GuzzleClient
      * @param null $countryCode
      * @param null $adminCode
      * @param bool $details
-     * @param null $typeID
+     * @param string|null $typeID
      * @return ResponseInterface
      * @throws GuzzleException
      */
