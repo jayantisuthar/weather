@@ -25,16 +25,58 @@ new Weather("your accuweather key", "language");
 ## How To Use APIs 
 after setting up the .env variable via `.env` file or directly injected into class
 
+1. Make a weather Class object of ```DashCode\Weather```
 ```
 $accuWeatherApp = new Weather();
+```
 
-$response = $accuWeatherApp->alert($locationKey, true);
+2. Select the Api Class
+```
+1. Alert API 
+$response = $accuWeatherApp->Alerts();
+
+2. Current Condition API 
+$response = $accuWeatherApp->CurrentConditions();
+
+3. Forecast API 
+$response = $accuWeatherApp->Forecast();
+
+4. Imagery API 
+$response = $accuWeatherApp->Imagery();
+
+5. Indices API 
+$response = $accuWeatherApp->Indices();
+
+6. Locations API 
+$response = $accuWeatherApp->Locations();
+
+7. MinuteCast API 
+$response = $accuWeatherApp->MinuteCast();
+
+8. Translation API 
+$response = $accuWeatherApp->Translations();
+
+9. Tropical API 
+$response = $accuWeatherApp->Tropical();
+
+10. Weather Alart API 
+$response = $accuWeatherApp->WeatherAlarms();
 
 ```
+3. Select API endpoint and add required paramaters to method for ```Alert``` Api we can do like this
+```
+$accuWeatherApp = new Weather();
+$alertApis = $accuWeatherApp->Alerts();
+
+$apiResponse = $alertApis->location("location key", true );
+
+```
+Please refer to the documentation of accuweather or package method for required params 
 
 ## Tech Stack
 
 **Server:** PHP
+
 
 
 ## API Reference

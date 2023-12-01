@@ -27,22 +27,22 @@ final class Weather
         $this->options = $options;
     }
 
-    public function alerts(): Alerts
+    public function Alerts(): Alerts
     {
         return new Alerts($this->apiKey, $this->language, $this->options);
     }
 
-    public function currentConditions(): CurrentConditions
+    public function CurrentConditions(): CurrentConditions
     {
         return new CurrentConditions($this->apiKey, $this->language, $this->options);
     }
 
-    public function forecast(): Forecast
+    public function Forecast(): Forecast
     {
         return new Forecast($this->apiKey, $this->language, $this->options);
     }
 
-    public function imagery(): Imagery
+    public function Imagery(): Imagery
     {
         return new Imagery($this->apiKey, $this->language, $this->options);
     }
